@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-*7xkbcc=^iqx2g@&_gnvz^w64znarw)xcw(u^^(37$oi)6-3g-
 DEBUG = False
 
 # ALLOWED_HOSTS = ['restosupervisionapi.azurewebsites.net']
-ALLOWED_HOSTS = ['']
+ALLOWED_HOSTS = ['https://localeats.azurewebsites.net']
 
 # Application definition
 

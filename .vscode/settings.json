@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/61aed4f8-74ae-4270-9321-1cc906647e44/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/localEats",
+    "appService.deploySubpath": "."
+}
