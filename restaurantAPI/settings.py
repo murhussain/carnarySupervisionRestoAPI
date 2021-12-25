@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*7xkbcc=^iqx2g@&_gnvz^w64znarw)xcw(u^^(37$oi)6-3g-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 # ALLOWED_HOSTS = ['restosupervisionapi.azurewebsites.net']
 ALLOWED_HOSTS = ['local-eats-app.herokuapp.com', '127.0.0.1']
