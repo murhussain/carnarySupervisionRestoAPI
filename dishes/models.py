@@ -19,8 +19,8 @@ def uploadTo(instance, filename):
 
 class DishImage(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="dishimages")
-    image = models.ImageField(
-        _("image"), upload_to=uploadTo, default='dishes/default.png')
+    profile = models.ImageField(
+        _("image"), upload_to=uploadTo)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -45,6 +45,8 @@ class Cuisine(models.Model):
 
 class Dish(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="dishes")
+    image = models.ImageField(
+        _("image"), upload_to=uploadTo)
     name = models.CharField(max_length=80, blank=True)
     cuisine = models.ForeignKey(Cuisine, on_delete=models.CASCADE, default=1, related_name="cuisines")
     duration = models.DurationField()

@@ -29,7 +29,7 @@ class Restaurant(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="restaurants")
     name = models.CharField(max_length=50, blank=True)
     image = models.ImageField(
-        _("image"), upload_to=upload_to, default='resto/default.jpg')
+        _("image"), upload_to=upload_to)
     owner = models.ForeignKey(Owner, on_delete=models.SET_NULL,
                               related_name="owners", null=True)
     rating = models.IntegerField(default=0,
