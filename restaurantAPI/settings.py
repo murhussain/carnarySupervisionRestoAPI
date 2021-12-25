@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-*7xkbcc=^iqx2g@&_gnvz^w64znarw)xcw(u^^(37$oi)6-3g-
 DEBUG = True
 
 # ALLOWED_HOSTS = ['restosupervisionapi.azurewebsites.net']
-ALLOWED_HOSTS = ['https://local-eats-app.herokuapp.com/']
+ALLOWED_HOSTS = ['https://local-eats-app.herokuapp.com/', '127.0.0.1']
 
 # Application definition
 
