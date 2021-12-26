@@ -1,5 +1,3 @@
-# from django.contrib.auth.models import User
-from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.conf import settings
@@ -16,8 +14,6 @@ class Owner(models.Model):
     class OwnerType(models.TextChoices):
         INDIVIDUAL = 'Individual'
         COMPANY = 'Company'
-
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="owners")
     name = models.CharField(max_length=100, default="SomeOne")
     type = models.CharField(max_length=30, choices=OwnerType.choices, default=OwnerType.INDIVIDUAL)
 
@@ -26,7 +22,6 @@ class Owner(models.Model):
 
 
 class Restaurant(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="restaurants")
     name = models.CharField(max_length=50, blank=True)
     image = models.ImageField(
         _("image"), upload_to=upload_to)

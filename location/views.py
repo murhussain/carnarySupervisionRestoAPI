@@ -2,6 +2,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
+# from rest_framework.permisions import IsAuthenticatedOrReadOnly
 from restaur.models import Restaurant
 from restaur.serializers import *
 from .models import District, Sector
@@ -11,6 +12,7 @@ from .serializers import *
 
 # Create your views here.
 class ProvinceModelViewSet(viewsets.ModelViewSet):
+    # permission_classes = [IsAuthenticatedOrReadOnly]
     # permission_classes = [IsAdminOrReadOnly]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["name"]
@@ -63,7 +65,7 @@ class SectorModelViewSet(viewsets.ModelViewSet):
     filterset_fields = ["name"]
 
     def get_queryset(self):
-        return Sector.objects.select_related("district", "user")
+        return Sector.objects.all()
 
     def get_serializer_class(self):
         if self.action in ("list", "retrieve"):

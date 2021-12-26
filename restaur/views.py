@@ -45,7 +45,7 @@ class OwnerModelViewSet(viewsets.ModelViewSet):
     filterset_fields = ['type']
 
     def get_queryset(self):
-        return Owner.objects.select_related("user").filter(user=self.request.user)
+        return Owner.objects.all()
 
     def get_serializer_class(self):
         if self.action in ("list", "retrieve"):
