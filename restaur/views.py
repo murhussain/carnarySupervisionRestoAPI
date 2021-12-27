@@ -57,3 +57,12 @@ class OwnerModelViewSet(viewsets.ModelViewSet):
         owner_resto = Restaurant.objects.filter(owner=pk)
         serializer = ReadRestaurantSerializer(owner_resto, many=True)
         return Response(serializer.data)
+
+
+
+
+# @api_view(['GET'])
+# def Districtlist(request):
+#     districts = District.objects.filter(sector=2)
+#     serializer = DistrictSerializer(districts, many=True)
+#     return Response(serializer.data)
