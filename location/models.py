@@ -31,7 +31,7 @@ class Sector(models.Model):
 
 
     def __str__(self):
-        return self.name
+        return f'{self.name} {self.district.name}'
 
     class Meta:
         ordering = ['-name']

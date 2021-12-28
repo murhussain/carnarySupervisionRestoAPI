@@ -1,10 +1,9 @@
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.decorators import action
+from rest_framework.decorators import action, api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-
 from dishes.models import Dish, Cuisine
 from dishes.permissions import IsManagersOrReadOnly
 from dishes.serializers import ReadDishSerializer, ReadCuisineSerializer
@@ -59,10 +58,8 @@ class OwnerModelViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-
-
-# @api_view(['GET'])
-# def Districtlist(request):
-#     districts = District.objects.filter(sector=2)
-#     serializer = DistrictSerializer(districts, many=True)
-#     return Response(serializer.data)
+@api_view(['GET'])
+def FavRestaurants(request):
+    favResto = Restaurant.objects.filter(rating=5).order_by('name')[:8]
+    serializer = ReadRestaurantSerializer(favResto, many=True)
+    return Response(serializer.data)

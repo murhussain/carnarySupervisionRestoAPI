@@ -23,7 +23,7 @@ class WriteRestaurantSerializer(serializers.ModelSerializer):
 
 class ReadRestaurantSerializer(serializers.ModelSerializer):
     owner = serializers.SlugRelatedField(slug_field="name", queryset=Owner.objects.all())
-    # district = serializers.SlugRelatedField(slug_field="name", queryset=District.objects.all())
+    district = serializers.SlugRelatedField(slug_field="name", queryset=District.objects.all())
     # sector = serializers.SlugRelatedField(slug_field="name", queryset=Sector.objects.all())
 
     class Meta:

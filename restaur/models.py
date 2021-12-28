@@ -18,7 +18,7 @@ class Owner(models.Model):
     type = models.CharField(max_length=30, choices=OwnerType.choices, default=OwnerType.INDIVIDUAL)
 
     def __str__(self):
-        return self.name
+        return f'{self.name}, {self.type}'
 
 
 class Restaurant(models.Model):
@@ -38,7 +38,7 @@ class Restaurant(models.Model):
     # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="restaurants")
 
     def __str__(self):
-        return f"{self.name} {self.owner.name}"
+        return self.name
 
     class Meta:
         ordering = ['-created_at']
