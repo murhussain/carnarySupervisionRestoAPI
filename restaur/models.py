@@ -38,7 +38,7 @@ class Restaurant(models.Model):
     # user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="restaurants")
 
     def __str__(self):
-        return self.name
+        return f'{self.name}, {self.district.name}'
 
     class Meta:
         ordering = ['-created_at']

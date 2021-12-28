@@ -25,7 +25,7 @@ class District(models.Model):
 
 
 class Sector(models.Model):
-    name = models.CharField(max_length=50, unique=True)
+    name = models.CharField(max_length=50)
     district = models.ForeignKey(District, on_delete=models.SET_NULL,
                                  null=True)
 

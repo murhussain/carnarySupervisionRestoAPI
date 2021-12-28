@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from .models import Dish, Ingredient, DishImage, Cuisine
+from restaur.models import Restaurant
 
 
 class WriteIngredientSerializer(serializers.ModelSerializer):
@@ -41,17 +42,16 @@ class WriteDishSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Dish
-        fields = ("thumbnail", "name", "cuisine", "duration", "price", "ingredient", "image")
+        fields = ("thumbnail", "name", "restaurant", "cuisine", "duration", "price", "ingredient", "image")
         # depth = 1
 
 
 class ReadDishSerializer(serializers.ModelSerializer):
-    # cuisine = serializers.SlugRelatedField(slug_field="name", queryset=Cuisine.objects.all())
-    # ingredient = serializers.SlugRelatedField(slug_field="name", queryset=Ingredient.objects.all(), many=True)
-    image = ReadDishImageSerializer(many=True)
+    ingredient = serializers.SlugRelatedField(slug_field="name", queryset=Ingredient.objects.all(), many=True)
+    # image = serializers.SlugRelatedField(slug_field="image", queryset=DishImage.objects.all(), many=True)
 
     class Meta:
         model = Dish
-        fields = ("id", "thumbnail", "name", "cuisine", "duration", "price", "ingredient", "image")
-        # depth = 3
-        # read_only_fields = fields
+        fields = ("id", "thumbnail", "name", "cuisine", "restaurant", "duration", "price", "ingredient")
+        
+

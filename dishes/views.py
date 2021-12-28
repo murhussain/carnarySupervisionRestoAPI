@@ -55,20 +55,3 @@ class DishModelViewSet(viewsets.ModelViewSet):
             return ReadDishSerializer
         return WriteDishSerializer
 
-
-# class DishImageModelViewSet(viewsets.ModelViewSet):
-#     permission_classes = [IsManagersOrReadOnly]
-#
-#     def get_queryset(self):
-#         return Cuisine.objects.all()
-#
-#     def get_serializer_class(self):
-#         if self.action in ("list", "retrieve"):
-#             return ReadDishImageSerializer
-#         return WriteDishImageSerializer
-#
-#     @action(detail=True, methods=['get'])
-#     def Dishes(self, request, pk=None):
-#         dish_category = Dish.objects.filter(cuisine=pk)
-#         serializer = ReadDishSerializer(dish_category, many=True)
-#         return Response(serializer.data)
