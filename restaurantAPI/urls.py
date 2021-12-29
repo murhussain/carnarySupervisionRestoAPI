@@ -9,7 +9,6 @@ from rest_framework.authtoken.views import obtain_auth_token
 urlpatterns = [
     path('', include('location.urls')),
     path('catalog/', include('restaur.urls')),
-    path('favourite/', views.FavRestaurants, name="favResto"),
     path('kitchen/', include('dishes.urls')),
     path('login/', obtain_auth_token, name="obtain-auth-token"),
     path('admin/', admin.site.urls),

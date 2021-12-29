@@ -38,6 +38,14 @@ class RestaurantModelViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
+
+
+class favouriteRestaurant(viewsets.ModelViewSet):
+    queryset = Restaurant.objects.filter(rating = 5)[:8]
+    serializer_class = ReadRestaurantSerializer
+
+
+
 class OwnerModelViewSet(viewsets.ModelViewSet):
     # permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
@@ -58,8 +66,8 @@ class OwnerModelViewSet(viewsets.ModelViewSet):
         return Response(serializer.data)
 
 
-@api_view(['GET'])
-def FavRestaurants(request):
-    favResto = Restaurant.objects.filter(rating=5).order_by('name')[:8]
-    serializer = ReadRestaurantSerializer(favResto, many=True)
-    return Response(serializer.data)
+# @api_view(['GET'])
+# def FavRestaurants(request):
+#     favResto = Restaurant.objects.filter(rating=5).order_by('name')[:8]
+#     serializer = ReadRestaurantSerializer(favResto, many=True)
+#     return Response(serializer.data)

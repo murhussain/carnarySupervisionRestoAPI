@@ -4,6 +4,7 @@ from rest_framework import routers
 
 router = routers.DefaultRouter()
 router.register(r"restaurant", RestaurantModelViewSet, basename="restaurants")
+router.register(r"favRestos", favouriteRestaurant, basename="rfavResto")
 router.register(r"owner", OwnerModelViewSet, basename="owner")
 urlpatterns = [
 ]
