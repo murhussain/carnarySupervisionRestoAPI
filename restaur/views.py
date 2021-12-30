@@ -65,9 +65,3 @@ class OwnerModelViewSet(viewsets.ModelViewSet):
         serializer = ReadRestaurantSerializer(owner_resto, many=True)
         return Response(serializer.data)
 
-
-# @api_view(['GET'])
-# def FavRestaurants(request):
-#     favResto = Restaurant.objects.filter(rating=5).order_by('name')[:8]
-#     serializer = ReadRestaurantSerializer(favResto, many=True)
-#     return Response(serializer.data)
