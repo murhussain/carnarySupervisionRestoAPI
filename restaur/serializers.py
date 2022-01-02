@@ -18,7 +18,7 @@ class ReadOwnerSerializer(serializers.ModelSerializer):
 class WriteRestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
-        fields = ("name", "image", "owner", "rating", "district", "sector")
+        fields = ("name", "logo", "homeImage", "owner", "rating", "description", "district", "sector")
 
 
 class ReadRestaurantSerializer(serializers.ModelSerializer):
@@ -28,6 +28,6 @@ class ReadRestaurantSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Restaurant
-        fields = ("id", "name", "image", "owner", "rating", "district", "sector")
+        fields = ("id", "name", "logo", "homeImage", "owner", "rating", "description", "district", "sector")
         # depth = 1
         # read_only_fields = fields

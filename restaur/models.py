@@ -23,8 +23,10 @@ class Owner(models.Model):
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=50, blank=True)
-    image = models.ImageField(
+    logo = models.ImageField(
         _("image"), upload_to=upload_to)
+    homeImage = models.ImageField(
+        _("image"), upload_to=upload_to, default='media/resto/defaultHome.jpeg')
     owner = models.ForeignKey(Owner, on_delete=models.SET_NULL,
                               related_name="owners", null=True)
     rating = models.IntegerField(default=0,
@@ -32,6 +34,7 @@ class Restaurant(models.Model):
                                      MaxValueValidator(5),
                                      MinValueValidator(0),
                                  ], )
+    description = models.TextField(default="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,")                            
     district = models.ForeignKey(District, on_delete=models.CASCADE, related_name="restaurants")
     sector = models.ForeignKey(Sector, on_delete=models.CASCADE, related_name="restaurants")
     created_at = models.DateTimeField(auto_now_add=True)

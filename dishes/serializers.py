@@ -42,7 +42,7 @@ class WriteDishSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Dish
-        fields = ("thumbnail", "name", "restaurant", "cuisine", "duration", "price", "ingredient", "image")
+        fields = ("name", "thumbnail", "homeImage", "restaurant", "cuisine", "duration", "description", "price", "ingredient", "image")
         # depth = 1
 
 
@@ -52,6 +52,6 @@ class ReadDishSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Dish
-        fields = ("id", "thumbnail", "name", "cuisine", "restaurant", "duration", "price", "ingredient")
+        fields = ("id", "name", "thumbnail", "homeImage", "cuisine", "restaurant", "duration", "description", "price", "ingredient")
         
 

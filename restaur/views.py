@@ -41,7 +41,7 @@ class RestaurantModelViewSet(viewsets.ModelViewSet):
 
 
 class favouriteRestaurant(viewsets.ModelViewSet):
-    queryset = Restaurant.objects.filter(rating = 5)[:8]
+    queryset = Restaurant.objects.filter(rating = 5)[:20]
     serializer_class = ReadRestaurantSerializer
 
 
