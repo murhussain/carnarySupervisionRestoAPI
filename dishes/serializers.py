@@ -48,6 +48,7 @@ class WriteDishSerializer(serializers.ModelSerializer):
 
 class ReadDishSerializer(serializers.ModelSerializer):
     ingredient = serializers.SlugRelatedField(slug_field="name", queryset=Ingredient.objects.all(), many=True)
+    cuisine = serializers.SlugRelatedField(slug_field="name", queryset=Cuisine.objects.all())
     # image = serializers.SlugRelatedField(slug_field="image", queryset=DishImage.objects.all(), many=True)
 
     class Meta:
