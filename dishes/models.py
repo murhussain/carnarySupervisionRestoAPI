@@ -3,29 +3,6 @@ from restaur.models import Restaurant
 from django.utils.translation import gettext_lazy as _
 
 
-# Create your models here.
-class Ingredient(models.Model):
-    name = models.CharField(max_length=30, blank=True)
-
-    def __str__(self):
-        return self.name
-
-
-def uploadTo(instance, filename):
-    return 'dishes/{filename}'.format(filename=filename)
-
-class DishImage(models.Model):
-    image = models.ImageField(
-        _("image"), upload_to=uploadTo)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    def __str__(self):
-        return str(self.image)
-
-    class Meta:
-        ordering = ['-created_at']
-
-
 class Cuisine(models.Model):
     name = models.CharField(max_length=50, blank=True)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.CASCADE, related_name="cuisines")
@@ -48,9 +25,7 @@ class Dish(models.Model):
         _("image"), upload_to=uploadThumbnail)
     cuisine = models.ForeignKey(Cuisine, on_delete=models.CASCADE, default=1, related_name="cuisines")
     duration = models.DurationField()
-    description = models.TextField(default="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,")
-    ingredient = models.ManyToManyField(Ingredient)
-    image = models.ManyToManyField(DishImage)
+    description = models.TextField(default="This dish is made up eggs, oil, sugger, salt")
     price = models.DecimalField(max_digits=8, decimal_places=2)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.SET_NULL,
                                    related_name="restaurants", null=True)
@@ -61,3 +36,22 @@ class Dish(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+
+
+    
+def uploadTo(instance, filename):
+    return 'dishes/{filename}'.format(filename=filename)
+
+class DishImage(models.Model):
+    image = models.ImageField(
+        _("image"), upload_to=uploadTo)
+    dish = models.ForeignKey(Dish, on_delete=models.SET_NULL,
+                                   related_name="dishImages", null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.image)
+
+    class Meta:
+        ordering = ['-created_at']
+

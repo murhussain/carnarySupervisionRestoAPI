@@ -1,18 +1,7 @@
 from rest_framework import serializers
-from .models import Dish, Ingredient, DishImage, Cuisine
+from .models import Dish, DishImage, Cuisine
 from restaur.models import Restaurant
 
-
-class WriteIngredientSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Ingredient
-        fields = ("name",)
-
-
-class ReadIngredientSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Ingredient
-        fields = ("id", "name")
 
 
 class WriteCuisineSerializer(serializers.ModelSerializer):
@@ -21,38 +10,37 @@ class WriteCuisineSerializer(serializers.ModelSerializer):
         fields = ("name", "restaurant")
 
 class ReadCuisineSerializer(serializers.ModelSerializer):
+    restaurant = serializers.SlugRelatedField(slug_field="name", queryset=Restaurant.objects.all())
     class Meta:
         model = Cuisine
         fields = ("id", "name", "restaurant")
 
-class WriteDishImageSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = DishImage
-        fields = ("image")
-
-
-class ReadDishImageSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = DishImage
-        fields = str("image")
 
 
 class WriteDishSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Dish
-        fields = ("name", "thumbnail", "restaurant", "cuisine", "duration", "description", "price", "ingredient", "image")
-        # depth = 1
+        fields = ("name", "thumbnail", "restaurant", "cuisine", "duration", "description", "price")
 
 
 class ReadDishSerializer(serializers.ModelSerializer):
-    ingredient = serializers.SlugRelatedField(slug_field="name", queryset=Ingredient.objects.all(), many=True)
     cuisine = serializers.SlugRelatedField(slug_field="name", queryset=Cuisine.objects.all())
-    # image = serializers.SlugRelatedField(slug_field="image", queryset=DishImage.objects.all(), many=True)
 
     class Meta:
         model = Dish
-        fields = ("id", "name", "thumbnail", "cuisine", "duration", "description", "price", "ingredient")
+        fields = ("id", "name", "thumbnail", "cuisine", "duration", "description", "price")
         
 
+class WriteDishImageSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = DishImage
+        fields = ("image", "dish")
+
+
+class ReadDishImageSerializer(serializers.ModelSerializer):
+    dish = serializers.SlugRelatedField(slug_field="name", queryset=Dish.objects.all())
+    class Meta:
+        model = DishImage
+        fields = ("id", "image", "dish")
