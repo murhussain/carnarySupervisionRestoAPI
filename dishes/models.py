@@ -25,7 +25,7 @@ class Dish(models.Model):
         _("image"), upload_to=uploadThumbnail)
     cuisine = models.ForeignKey(Cuisine, on_delete=models.CASCADE, default=1, related_name="cuisines")
     duration = models.DurationField()
-    description = models.TextField()
+    description = models.TextField(default="This dish is made up eggs, oil, suger, salt")
     price = models.DecimalField(max_digits=8, decimal_places=2)
     restaurant = models.ForeignKey(Restaurant, on_delete=models.SET_NULL,
                                    related_name="restaurants", null=True)
@@ -35,7 +35,7 @@ class Dish(models.Model):
         return self.name
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['name']
 
 
     

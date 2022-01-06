@@ -10,7 +10,7 @@ class Province(models.Model):
         return self.name
 
     class Meta:
-        ordering = ['-name']
+        ordering = ['name']
 
 class District(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -21,7 +21,7 @@ class District(models.Model):
         return self.name
 
     class Meta:
-        ordering = ['-name']
+        ordering = ['name']
 
 
 class Sector(models.Model):
@@ -34,4 +34,4 @@ class Sector(models.Model):
         return f'{self.name} {self.district.name}'
 
     class Meta:
-        ordering = ['-name']
+        ordering = ['name']

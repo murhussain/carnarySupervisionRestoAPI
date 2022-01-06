@@ -20,6 +20,10 @@ class Owner(models.Model):
     def __str__(self):
         return f'{self.name}, {self.type}'
 
+    
+    class Meta:
+        ordering = ['name']
+
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=50, blank=True)
@@ -44,4 +48,4 @@ class Restaurant(models.Model):
         return f'{self.name}, {self.district.name}'
 
     class Meta:
-        ordering = ['-created_at']
+        ordering = ['name']
