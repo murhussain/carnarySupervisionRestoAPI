@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-*7xkbcc=^iqx2g@&_gnvz^w64znarw)xcw(u^^(37$oi)6-3g-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localeats.azurewebsites.net']
+ALLOWED_HOSTS = ['127.0.0.1', 'localeats.azurewebsites.net', 'resto-app-1b7df.web.app']
 # ALLOWED_HOSTS = ['local-eats-app.herokuapp.com', '127.0.0.1', 'localeats.azurewebsites.net']
 
 # Application definition
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -139,7 +140,10 @@ MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
+CORS_ORIGIN_ALLOW_ALL = False
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:8000', 'https://resto-web-api.herokuapp.com', 'https://resto-app-1b7df.web.app', 'http://localeats.azurewebsites.net'
+)
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 REST_FRAMEWORK = {
     # 'DEFAULT_PERMISSION_CLASSES': [
