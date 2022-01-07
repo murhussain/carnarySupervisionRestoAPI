@@ -5,7 +5,6 @@ from rest_framework.decorators import action, api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from dishes.models import Dish, Cuisine
-from dishes.permissions import IsManagersOrReadOnly
 from dishes.serializers import ReadDishSerializer, ReadCuisineSerializer
 from .models import Restaurant, Sector
 from .serializers import *
@@ -13,7 +12,7 @@ from .serializers import *
 
 # Create your views here.
 class RestaurantModelViewSet(viewsets.ModelViewSet):
-    # permission_classes = [IsManagersOrReadOnly]
+    permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['rating', "name"]
 
@@ -41,13 +40,14 @@ class RestaurantModelViewSet(viewsets.ModelViewSet):
 
 
 class favouriteRestaurant(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
     queryset = Restaurant.objects.filter(rating = 5)[:20]
     serializer_class = ReadRestaurantSerializer
 
 
 
 class OwnerModelViewSet(viewsets.ModelViewSet):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['type']
 

@@ -2,18 +2,16 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
-# from rest_framework.permisions import IsAuthenticatedOrReadOnly
 from restaur.models import Restaurant
 from restaur.serializers import *
+from rest_framework.permissions import IsAuthenticated
 from .models import District, Sector
-from .permissions import IsAdminOrReadOnly
 from .serializers import *
 
 
 # Create your views here.
 class ProvinceModelViewSet(viewsets.ModelViewSet):
-    # permission_classes = [IsAuthenticatedOrReadOnly]
-    # permission_classes = [IsAdminOrReadOnly]
+    permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["name"]
 
@@ -34,7 +32,7 @@ class ProvinceModelViewSet(viewsets.ModelViewSet):
 
 
 class DistrictModelViewSet(viewsets.ModelViewSet):
-    # permission_classes = [IsAdminOrReadOnly]
+    permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["name"]
 
@@ -60,7 +58,7 @@ class DistrictModelViewSet(viewsets.ModelViewSet):
 
 
 class SectorModelViewSet(viewsets.ModelViewSet):
-    # permission_classes = [IsAdminOrReadOnly]
+    permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ["name"]
 

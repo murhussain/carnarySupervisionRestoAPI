@@ -2,7 +2,7 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from .models import Dish, Cuisine, DishImage
-from .permissions import IsManagersOrReadOnly
+from rest_framework.permissions import IsAuthenticated
 from .serializers import *
 
 
@@ -26,8 +26,7 @@ class CuisineModelViewSet(viewsets.ModelViewSet):
 
 
 class DishModelViewSet(viewsets.ModelViewSet):
-    # permission_classes = [IsManagersOrReadOnly]
-
+    permission_classes = [IsAuthenticated]
     def get_queryset(self):
         return Dish.objects.select_related("restaurant")
 
@@ -47,8 +46,7 @@ class DishModelViewSet(viewsets.ModelViewSet):
 
 
 class DishImageModelViewSet(viewsets.ModelViewSet):
-    # permission_classes = [IsManagersOrReadOnly]
-
+    permission_classes = [IsAuthenticated]
     def get_queryset(self):
         return DishImage.objects.select_related("dish")
 
